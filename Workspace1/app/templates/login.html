@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+
+{%block title%}Login{% endblock %}
+
+{% block body%}
+
+<div class="container">
+    <h1>Login</h1>
+    {% with messages = get_flashed_messages() %}
+    {%if messages%}
+    {%for message in messages%}
+
+    <div class='alert alert-success' role='alert' >
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span></span> x</span>
+        </button>
+        {{message}}
+        </div>
+
+  
+
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+    
+    <form action="", method="POST">
+        {{form.csrf_token}}
+        <p>
+            {{form.username.label}}</br>
+            {{form.username(size=32)}}
+
+        </p>
+        <p>
+            {{form.password.label}}</br>
+            {{form.password(size=32)}}
+            
+        </p>
+        <p><b>
+            <!--{{form.submit}} login button  from wtf -->
+            <input type="submit", value="Login" class="btn btn-success btn-lg"></b>
+        </p>
+    </form>
+</div>
+{% endblock %}

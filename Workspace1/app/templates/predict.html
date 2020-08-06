@@ -1,0 +1,80 @@
+{% extends 'base.html'%}
+
+
+{% block body%}
+
+
+    {% with messages = get_flashed_messages() %}
+    {%if messages%}
+    {%for message in messages%}
+
+    <div class='alert alert-success alert-dismissable' role='alert' >
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span area-hidden="true">x</span>
+        </button>
+        {{message}}
+        </div>
+
+  
+
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+
+    <div class="jumbotron" style="background:hsl(204, 18%, 35%);color:#fff">
+        <div class="container">
+          
+          <h2 class="display-3">ServiceNow Ticket Classifier</h2>
+          <p>Using Machine Learning </p>
+          <p><a class="btn btn-success waves-effect btn-lg" href="/predict" role="button">Refresh &raquo;</a>
+          <a class="btn btn-success waves-effect btn-lg" href="/logout" role="button">Logout &raquo;</a></p>
+        </div>
+        
+      </div>
+    <br/>
+<div class="shadow-sm p-3 mb-5 bg-white rounded">
+  <div class="container">
+    <form method="POST" action="/predict">
+        <p>
+            <!--{{form.submit}} login button  from wtf -->
+            <input type='text', name="namequery" class="form-control"></br>
+            <input type="submit" value="Predict"class="btn btn-secondary btn-lg shadow-sm"></button>
+            <button type="reset" class="btn btn-secondary btn-lg shadow-sm">Clear</button>
+           
+        </p>
+      </form>
+    </div>
+  </div>
+    <br/>
+<br/>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+          <div class="shadow-sm p-3 mb-5 bg-white rounded" id="custom_card">
+            <h2 class="font-weight-light">User Test:</h2>
+            <p class="font-weight-light">{{ namequery }}</p>
+			
+		</div>
+	</div>
+
+
+
+	<div class="col-md-6">
+          <div class="shadow-sm p-3 mb-5 bg-white rounded" id="custom_card2">
+          	<h4 class="font-weight-light">Predicted Category:</h4>
+			<div class="alert alert-success" role="alert"><p class="font-weight-light">{{ prediction }}</p></div>
+			
+    </div>
+    
+    
+</div>
+	<br/>
+  <br/>
+  <br/>
+
+</div>
+
+
+
+{% endblock %}
